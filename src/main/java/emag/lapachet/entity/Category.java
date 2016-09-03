@@ -1,7 +1,7 @@
 package emag.lapachet.entity;
 
 import javax.persistence.*;
-import java.util.UUID;
+import java.util.Date;
 
 @Entity
 @Table
@@ -9,35 +9,28 @@ public class Category
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    private Integer parent;
+    private Integer id;
+    private Integer parentId;
     private String name;
+    private Integer status;
 
-    public Category()
-    {
+    public Category() {
         super();
     }
 
-    public Category(Integer parent, String name) {
-        super();
-        this.parent = parent;
+    public Category(Integer id, Integer parentId, String name, Integer status) {
+        this.id = id;
+        this.parentId = parentId;
         this.name = name;
+        this.status = status;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getParent() {
-        return parent;
-    }
-
-    public void setParent(Integer parent) {
-        this.parent = parent;
     }
 
     public String getName() {
@@ -48,12 +41,29 @@ public class Category
         this.name = name;
     }
 
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "CategoryInterface{" +
+        return "Category{" +
                 "id=" + id +
-                ", parent=" + parent +
+                ", parentId=" + parentId +
                 ", name='" + name + '\'' +
+                ", status=" + status +
                 '}';
     }
 }
