@@ -16,5 +16,15 @@ public class HomeEndpoint extends AbstractEndpoint {
             Object attributes = IndexController.serveIndexPage();
             return new ModelAndView(attributes, "index.ftl");
         }, new FreeMarkerEngine());
+
+        spark.get("/add_products", (request, response) -> {
+            Object attributes = IndexController.getAddProductsAttributes();
+            return new ModelAndView(attributes, "addProducts/form.ftl");
+        }, new FreeMarkerEngine());
+
+        spark.post("/add_products", (request, response) -> {
+            Object attributes = IndexController.serveIndexPage();
+            return new ModelAndView(attributes, "index.ftl");
+        }, new FreeMarkerEngine());
     }
 }
