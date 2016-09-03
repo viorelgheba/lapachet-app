@@ -1,16 +1,16 @@
 package emag.lapachet.route;
 
-import emag.lapachet.service.SqlProducts;
+import emag.lapachet.service.SqlProduct;
 import spark.Service;
 import static emag.lapachet.util.JsonUtil.json;
 
 public class ProductApiEndpoint extends AbstractEndpoint {
 
-    private SqlProducts sqlProducts;
+    private SqlProduct sqlProducts;
 
     public ProductApiEndpoint(String basePath) {
         super(basePath);
-        this.sqlProducts = new SqlProducts();
+        this.sqlProducts = new SqlProduct();
     }
 
     @Override

@@ -95,7 +95,7 @@ public class Product
 
     @Override
     public String toString() {
-        return "ProductsInterface{" +
+        return "ProductInterface{" +
                 "id=" + id +
                 ", categoryId=" + categoryId +
                 ", name='" + name + '\'' +

@@ -1,9 +1,9 @@
 package emag.lapachet.route;
 
 abstract class AbstractEndpoint implements EndpointInterface {
-    protected final String basePath;
+    final String basePath;
 
-    public AbstractEndpoint(String basePath) {
+    AbstractEndpoint(String basePath) {
         this.basePath = basePath;
     }
 }

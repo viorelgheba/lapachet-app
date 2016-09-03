@@ -50,7 +50,7 @@ public class Category
 
     @Override
     public String toString() {
-        return "CategoriesInterface{" +
+        return "CategoryInterface{" +
                 "id=" + id +
                 ", parent=" + parent +
                 ", name='" + name + '\'' +

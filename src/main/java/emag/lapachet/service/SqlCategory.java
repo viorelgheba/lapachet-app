@@ -1,13 +1,13 @@
 package emag.lapachet.service;
 
 import emag.lapachet.entity.Category;
-import emag.lapachet.modelInterface.CategoriesInterface;
+import emag.lapachet.modelInterface.CategoryInterface;
 import emag.lapachet.util.GenericList;
 
 import java.util.List;
 import java.util.UUID;
 
-public class SqlCategories implements CategoriesInterface {
+public class SqlCategory implements CategoryInterface {
     @Override
     public UUID addCategory(Integer parent, String name) {
         return null;
