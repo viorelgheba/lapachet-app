@@ -11,13 +11,14 @@ import static spark.Spark.*;
 public class ApiProducts {
     public ApiProducts(final SqlProducts sqlProducts) {
         get("/products", (request, response) -> {
-            GenericList products = sqlProducts.getAllProducts();
             response.type("application/json");
+            GenericList products = sqlProducts.getAllProducts();
 
             return products;
         }, json());
 
         get("/products/:id", (request, response) -> {
+            response.type("application/json");
             String id = request.params(":id");
             Products product = sqlProducts.getProduct(id);
             if (null != product) {
