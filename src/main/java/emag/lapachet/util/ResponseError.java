@@ -1,4 +1,4 @@
-package emag.lapachet.service;
+package emag.lapachet.util;
 
 public class ResponseError {
     private String message;

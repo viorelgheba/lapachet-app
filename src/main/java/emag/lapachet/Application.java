@@ -10,14 +10,14 @@ import static spark.Spark.*;
 
 public class Application {
 
-    private static final Integer PORT;
-
-    static {
-        PORT = Integer.valueOf(System.getenv("PORT"));
-    }
+//    private static final Integer PORT;
+//
+//    static {
+//        PORT = Integer.valueOf(System.getenv("PORT"));
+//    }
 
     public static void main(String[] args) {
-        port(PORT);
+        // port(PORT);
         staticFileLocation("/public");
 
         new ApiProducts(new SqlProducts());

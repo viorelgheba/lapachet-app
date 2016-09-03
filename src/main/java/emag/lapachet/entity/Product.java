@@ -5,7 +5,7 @@ import java.util.UUID;
 
 @Entity
 @Table
-public class Products
+public class Product
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,7 +17,7 @@ public class Products
     private Integer grammage;
     private String unit;
 
-    public Products(Integer categoryId, String name, String description, Double basePrice, Integer grammage, String unit) {
+    public Product(Integer categoryId, String name, String description, Double basePrice, Integer grammage, String unit) {
         super();
         this.categoryId = categoryId;
         this.name = name;
@@ -27,7 +27,7 @@ public class Products
         this.unit = unit;
     }
 
-    public Products() {
+    public Product() {
         super();
         this.categoryId = 0;
         this.name = "";

@@ -1,9 +1,7 @@
-package emag.lapachet.service;
+package emag.lapachet.util;
 
 import com.google.gson.Gson;
 import spark.ResponseTransformer;
-
-import java.util.Objects;
 
 public class JsonUtil {
     private static String toJson(Object object) {

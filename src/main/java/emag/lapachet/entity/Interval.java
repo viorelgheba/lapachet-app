@@ -6,7 +6,7 @@ import java.util.UUID;
 
 @Entity
 @Table
-public class Intervals
+public class Interval
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,11 +15,11 @@ public class Intervals
     private Time timeEnd;
     private Integer maxSales;
 
-    public Intervals() {
+    public Interval() {
         super();
     }
 
-    public Intervals(Time timeStart, Time timeEnd, Integer maxSales) {
+    public Interval(Time timeStart, Time timeEnd, Integer maxSales) {
         super();
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;

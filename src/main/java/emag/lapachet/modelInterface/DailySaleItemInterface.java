@@ -1,6 +1,6 @@
 package emag.lapachet.modelInterface;
 
-import emag.lapachet.service.GenericList;
+import emag.lapachet.util.GenericList;
 
 import java.sql.Date;
 import java.util.UUID;

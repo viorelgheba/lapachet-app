@@ -1,13 +1,14 @@
 package emag.lapachet.service;
 
-import emag.lapachet.entity.Products;
+import emag.lapachet.entity.Product;
 import emag.lapachet.modelInterface.ProductsInterface;
+import emag.lapachet.util.GenericList;
 
+import java.util.List;
 import java.util.UUID;
 
 public class SqlProducts implements ProductsInterface
 {
-
     public SqlProducts() {
     }
 
@@ -27,19 +28,19 @@ public class SqlProducts implements ProductsInterface
     }
 
     @Override
-    public Products getProduct(String product) {
-        return new Products();
+    public Product getProduct(Integer productId) {
+        return new Product();
     }
 
     @Override
-    public GenericList getAllProducts() {
+    public List<Product> getAllProducts() {
         /* TODO: get element form db */
-        GenericList<Products> listProducts = new GenericList<Products>();
-        Products products = new Products();
-        Products products2 = new Products();
-        listProducts.addElement(products);
-        listProducts.addElement(products2);
+        GenericList<Product> listProducts = new GenericList<>();
+        Product product = new Product();
+        Product product2 = new Product();
+        listProducts.addElement(product);
+        listProducts.addElement(product2);
 
-        return listProducts;
+        return listProducts.getList();
     }
 }

@@ -5,7 +5,7 @@ import java.util.UUID;
 
 @Entity
 @Table
-public class Categories
+public class Category
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,12 +13,12 @@ public class Categories
     private Integer parent;
     private String name;
 
-    public Categories()
+    public Category()
     {
         super();
     }
 
-    public Categories(Integer parent, String name) {
+    public Category(Integer parent, String name) {
         super();
         this.parent = parent;
         this.name = name;
@@ -50,7 +50,7 @@ public class Categories
 
     @Override
     public String toString() {
-        return "Categories{" +
+        return "Category{" +
                 "id=" + id +
                 ", parent=" + parent +
                 ", name='" + name + '\'' +
