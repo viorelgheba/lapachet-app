@@ -1,6 +1,7 @@
 package emag.lapachet.entity;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table
@@ -8,15 +9,15 @@ public class Products
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private UUID id;
     private Integer categoryId;
     private String name;
     private String description;
-    private Float basePrice;
+    private Double basePrice;
     private Integer grammage;
     private String unit;
 
-    public Products(Integer categoryId, String name, String description, Float basePrice, Integer grammage, String unit) {
+    public Products(Integer categoryId, String name, String description, Double basePrice, Integer grammage, String unit) {
         super();
         this.categoryId = categoryId;
         this.name = name;
@@ -31,16 +32,16 @@ public class Products
         this.categoryId = 0;
         this.name = "";
         this.description = "";
-        this.basePrice = 0.00f;
+        this.basePrice = 0.00;
         this.grammage = 0;
         this.unit = "";
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -68,11 +69,11 @@ public class Products
         this.description = description;
     }
 
-    public Float getBasePrice() {
+    public Double getBasePrice() {
         return basePrice;
     }
 
-    public void setBasePrice(Float basePrice) {
+    public void setBasePrice(Double basePrice) {
         this.basePrice = basePrice;
     }
 
@@ -94,7 +95,7 @@ public class Products
 
     @Override
     public String toString() {
-        return "Products{" +
+        return "ProductsInterface{" +
                 "id=" + id +
                 ", categoryId=" + categoryId +
                 ", name='" + name + '\'' +
