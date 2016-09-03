@@ -1,7 +1,7 @@
 package emag.lapachet.entity;
 
 import javax.persistence.*;
-import java.util.UUID;
+import java.util.Date;
 
 @Entity
 @Table
@@ -9,35 +9,32 @@ public class Category
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    private Integer parent;
+    private Integer id;
+    private Integer parentId;
     private String name;
+    private Integer status;
+    private Date created;
+    private Date modified;
 
-    public Category()
-    {
+    public Category() {
         super();
     }
 
-    public Category(Integer parent, String name) {
-        super();
-        this.parent = parent;
+    public Category(Integer id, Integer parentId, String name, Integer status, Date created, Date modified) {
+        this.id = id;
+        this.parentId = parentId;
         this.name = name;
+        this.status = status;
+        this.created = created;
+        this.modified = modified;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getParent() {
-        return parent;
-    }
-
-    public void setParent(Integer parent) {
-        this.parent = parent;
     }
 
     public String getName() {
@@ -48,12 +45,47 @@ public class Category
         this.name = name;
     }
 
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public Date getModified() {
+        return modified;
+    }
+
+    public void setModified(Date modified) {
+        this.modified = modified;
+    }
+
     @Override
     public String toString() {
-        return "CategoriesInterface{" +
+        return "Category{" +
                 "id=" + id +
-                ", parent=" + parent +
+                ", parentId=" + parentId +
                 ", name='" + name + '\'' +
+                ", status=" + status +
+                ", created=" + created +
+                ", modified=" + modified +
                 '}';
     }
 }

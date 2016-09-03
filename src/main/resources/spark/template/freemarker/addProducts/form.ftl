@@ -6,7 +6,9 @@
   <div class="form-group">
         <label for="productName">Categorie</label>
         <select class="form-control">
-                <option>1</option>
+            <#list categories as category>
+                <option value="${category.id}">${category.name}</option>
+            </#list>
         </select>
     </div>
   <div class="form-group">

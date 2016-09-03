@@ -1,5 +1,6 @@
 package emag.lapachet.route;
 
+import emag.lapachet.entity.Category;
 import emag.lapachet.index.IndexController;
 import spark.ModelAndView;
 import spark.Service;
