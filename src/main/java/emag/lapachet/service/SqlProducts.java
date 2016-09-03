@@ -7,7 +7,6 @@ import java.util.UUID;
 
 public class SqlProducts implements ProductsInterface
 {
-    private GenericList<Products> listProducts;
 
     public SqlProducts() {
     }
@@ -30,12 +29,12 @@ public class SqlProducts implements ProductsInterface
     @Override
     public GenericList getAllProducts() {
         /* TODO: get element form db */
-        this.listProducts = new GenericList<Products>();
+        GenericList<Products> listProducts = new GenericList<Products>();
         Products products = new Products();
         Products products2 = new Products();
-        this.listProducts.addElement(products);
-        this.listProducts.addElement(products2);
+        listProducts.addElement(products);
+        listProducts.addElement(products2);
 
-        return this.listProducts;
+        return listProducts;
     }
 }
