@@ -1,11 +1,14 @@
 package emag.lapachet.index;
 
-import spark.Request;
-import spark.Response;
-import spark.Route;
+import java.util.HashMap;
+import java.util.Map;
 
 public class IndexController {
-    public static Route serveIndexPage = (Request request, Response response) -> {
-        return "zzzzzzzz";
-    };
+    public static Object serveIndexPage ()
+    {
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put("message", "Hello World!");
+
+        return attributes;
+    }
 }
