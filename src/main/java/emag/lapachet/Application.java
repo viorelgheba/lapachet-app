@@ -6,6 +6,9 @@ import emag.lapachet.service.SqlProducts;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static spark.Spark.*;
 
 public class Application {
@@ -22,9 +25,33 @@ public class Application {
 
         new ApiProducts(new SqlProducts());
 
-        get("/", (request, response) -> {
-            Object attributes = IndexController.serveIndexPage();
-            return new ModelAndView(attributes, "index.ftl");
-        }, new FreeMarkerEngine());
+        try {
+
+            get("/", (request, response) -> {
+                Object attributes = IndexController.serveIndexPage();
+                return new ModelAndView(attributes, "index.ftl");
+            }, new FreeMarkerEngine());
+
+            get("/", (request, response) -> {
+                Object attributes = IndexController.serveIndexPage();
+                return new ModelAndView(attributes, "index.ftl");
+            }, new FreeMarkerEngine());
+
+            get("/add_products", (request, response) -> {
+                    Object attributes = IndexController.getAddProductsAttributes();
+                    return new ModelAndView(attributes, "addProducts/form.ftl");
+            }, new FreeMarkerEngine());
+
+            post("/add_products", (request, response) -> {
+                Object attributes = IndexController.serveIndexPage();
+                return new ModelAndView(attributes, "index.ftl");
+            }, new FreeMarkerEngine());
+
+        } catch (Exception e) {
+            Map<String, Object> error = new HashMap<>();
+            error.put("error", true);
+            error.put("message", e.getMessage());
+
+        }
     }
 }

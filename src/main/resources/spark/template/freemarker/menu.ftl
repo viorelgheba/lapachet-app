@@ -1,3 +1,5 @@
+<script><#include "menu.js"></script>
+
 <p>
     <button type="button" class="btn btn-primary btn-block" id="add_product">Adauga produs</button>
 </p>
