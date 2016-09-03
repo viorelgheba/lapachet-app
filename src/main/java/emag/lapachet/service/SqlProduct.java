@@ -1,15 +1,15 @@
 package emag.lapachet.service;
 
 import emag.lapachet.entity.Product;
-import emag.lapachet.modelInterface.ProductsInterface;
+import emag.lapachet.modelInterface.ProductInterface;
 import emag.lapachet.util.GenericList;
 
 import java.util.List;
 import java.util.UUID;
 
-public class SqlProducts implements ProductsInterface
+public class SqlProduct implements ProductInterface
 {
-    public SqlProducts() {
+    public SqlProduct() {
     }
 
     @Override

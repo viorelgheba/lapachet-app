@@ -60,7 +60,7 @@ public class Interval
 
     @Override
     public String toString() {
-        return "IntervalsInterface{" +
+        return "IntervalInterface{" +
                 "id=" + id +
                 ", timeStart=" + timeStart +
                 ", timeEnd=" + timeEnd +

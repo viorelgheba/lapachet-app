@@ -1,7 +1,7 @@
 package emag.lapachet.index;
 
 import emag.lapachet.entity.Category;
-import emag.lapachet.service.SqlCategories;
+import emag.lapachet.service.SqlCategory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +19,7 @@ public class IndexController {
     public static Map<String, Object> getAddProductsAttributes() throws ClassNotFoundException {
         Map<String, Object> attributes = new HashMap<>();
 
-        SqlCategories sqlCategories = new SqlCategories();
+        SqlCategory sqlCategories = new SqlCategory();
         List<Category> categories = sqlCategories.getAllCategories();
         attributes.put("categories", categories);
 

@@ -6,7 +6,7 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import emag.lapachet.entity.Category;
-import emag.lapachet.modelInterface.CategoriesInterface;
+import emag.lapachet.modelInterface.CategoryInterface;
 import emag.lapachet.util.Db;
 import emag.lapachet.util.GenericList;
 import org.bson.Document;
@@ -21,12 +21,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class SqlCategories implements CategoriesInterface {
-
-    public SqlCategories() {
-    }
-
-    @Override
+public class SqlCategory implements CategoryInterface
+{
     public UUID addCategory(Integer parent, String name) {
         return null;
     }
