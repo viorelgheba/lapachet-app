@@ -3,7 +3,7 @@ package emag.lapachet.util;
 public class ResponseError {
     private String message;
 
-    public ResponseError(String message, String... args) {
+    public ResponseError(String message, Object... args) {
         this.message = String.format(message, args);
     }
 

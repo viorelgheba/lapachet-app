@@ -1,30 +1,20 @@
 package emag.lapachet;
 
-import emag.lapachet.api.ApiProducts;
-import emag.lapachet.index.IndexController;
-import emag.lapachet.service.SqlProducts;
-import spark.ModelAndView;
-import spark.template.freemarker.FreeMarkerEngine;
+import emag.lapachet.route.HomeEndpoint;
+import emag.lapachet.route.ProductApiEndpoint;
+import emag.lapachet.route.RouteContext;
+import spark.Service;
 
 import static spark.Spark.*;
 
 public class Application {
 
-//    private static final Integer PORT;
-//
-//    static {
-//        PORT = Integer.valueOf(System.getenv("PORT"));
-//    }
-
     public static void main(String[] args) {
-        // port(PORT);
-        staticFileLocation("/public");
+        staticFiles.location("/public");
+        Service http = Service.ignite();//.port(5000);
 
-        new ApiProducts(new SqlProducts());
-
-        get("/", (request, response) -> {
-            Object attributes = IndexController.serveIndexPage();
-            return new ModelAndView(attributes, "index.ftl");
-        }, new FreeMarkerEngine());
+        RouteContext routeContext = new RouteContext(http);
+        routeContext.addEndpoint(new HomeEndpoint(""));
+        routeContext.addEndpoint(new ProductApiEndpoint("/api/products"));
     }
 }
