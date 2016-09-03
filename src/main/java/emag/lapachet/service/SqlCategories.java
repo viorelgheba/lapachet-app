@@ -1,9 +1,15 @@
 package emag.lapachet.service;
 
+import com.mongodb.Block;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoDatabase;
 import emag.lapachet.entity.Category;
 import emag.lapachet.modelInterface.CategoriesInterface;
 import emag.lapachet.util.Db;
 import emag.lapachet.util.GenericList;
+import org.bson.Document;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -39,11 +45,27 @@ public class SqlCategories implements CategoriesInterface {
     public List<Category> getAllCategories() {
         List<Category> categories = new ArrayList<Category>();
 
-        try {
-            /*List<Category> categories = conn.createQuery("select * from category")
+        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://viorel:parolaviorel@ds017776.mlab.com:17776/heroku_2ktc1zmv"));
+        MongoDatabase db = mongoClient.getDatabase("heroku_2ktc1zmv");
+        FindIterable<Document> iterable = db.getCollection("category").find();
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                Category category = new Category(
+                        document.getInteger("_id"),
+                        document.getInteger("parent_id"),
+                        document.getString("name"),
+                        document.getInteger("status")
+                );
+                categories.add(category);
+            }
+        });
+
+        /*try {
+            List<Category> categories = conn.createQuery("select * from category")
                     .executeAndFetch(Category.class);
 
-            return categories;*/
+            return categories;
 
             Statement stmt = Db.getConnection().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM category");
@@ -52,7 +74,7 @@ public class SqlCategories implements CategoriesInterface {
             }
         } catch (SQLException | URISyntaxException e) {
             e.printStackTrace();
-        }
+        }*/
 
         return categories;
     }

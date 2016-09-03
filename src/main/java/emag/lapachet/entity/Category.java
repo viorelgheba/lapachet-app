@@ -13,20 +13,16 @@ public class Category
     private Integer parentId;
     private String name;
     private Integer status;
-    private Date created;
-    private Date modified;
 
     public Category() {
         super();
     }
 
-    public Category(Integer id, Integer parentId, String name, Integer status, Date created, Date modified) {
+    public Category(Integer id, Integer parentId, String name, Integer status) {
         this.id = id;
         this.parentId = parentId;
         this.name = name;
         this.status = status;
-        this.created = created;
-        this.modified = modified;
     }
 
     public Integer getId() {
@@ -61,22 +57,6 @@ public class Category
         this.status = status;
     }
 
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getModified() {
-        return modified;
-    }
-
-    public void setModified(Date modified) {
-        this.modified = modified;
-    }
-
     @Override
     public String toString() {
         return "Category{" +
@@ -84,8 +64,6 @@ public class Category
                 ", parentId=" + parentId +
                 ", name='" + name + '\'' +
                 ", status=" + status +
-                ", created=" + created +
-                ", modified=" + modified +
                 '}';
     }
 }
