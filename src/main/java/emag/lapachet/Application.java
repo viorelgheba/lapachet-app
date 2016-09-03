@@ -11,7 +11,7 @@ public class Application {
 
     public static void main(String[] args) {
         staticFiles.location("/public");
-        Service http = Service.ignite();//.port(Integer.valueOf(System.getenv("PORT")));
+        Service http = Service.ignite().port(Integer.valueOf(System.getenv("PORT")));
 
         RouteContext routeContext = new RouteContext(http);
         routeContext.addEndpoint(new HomeEndpoint(""));

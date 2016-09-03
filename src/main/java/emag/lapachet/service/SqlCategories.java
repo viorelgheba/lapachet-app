@@ -43,11 +43,9 @@ public class SqlCategories implements CategoriesInterface {
 
     @Override
     public List<Category> getAllCategories() {
-        List<Category> categories = new ArrayList<Category>();
+        List<Category> categories = new ArrayList<>();
 
-        MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://viorel:parolaviorel@ds017776.mlab.com:17776/heroku_2ktc1zmv"));
-        MongoDatabase db = mongoClient.getDatabase("heroku_2ktc1zmv");
-        FindIterable<Document> iterable = db.getCollection("category").find();
+        FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("category").find();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
@@ -57,24 +55,10 @@ public class SqlCategories implements CategoriesInterface {
                         document.getString("name"),
                         document.getInteger("status")
                 );
+
                 categories.add(category);
             }
         });
-
-        /*try {
-            List<Category> categories = conn.createQuery("select * from category")
-                    .executeAndFetch(Category.class);
-
-            return categories;
-
-            Statement stmt = Db.getConnection().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM category");
-            while (rs.next()) {
-                System.out.println("Read from DB: " + rs.getTimestamp("name"));
-            }
-        } catch (SQLException | URISyntaxException e) {
-            e.printStackTrace();
-        }*/
 
         return categories;
     }
