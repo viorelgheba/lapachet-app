@@ -1,0 +1,6 @@
+{
+  "name": "LaPachet App",
+  "description": "LaPachet Java App",
+  "image": "heroku/java",
+  "addons": []
+}
