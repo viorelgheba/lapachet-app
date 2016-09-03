@@ -7,7 +7,6 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import emag.lapachet.entity.Category;
 import emag.lapachet.modelInterface.CategoryInterface;
-import emag.lapachet.modelInterface.CategoriesInterface;
 import emag.lapachet.util.Db;
 import emag.lapachet.util.GenericList;
 import org.bson.Document;
