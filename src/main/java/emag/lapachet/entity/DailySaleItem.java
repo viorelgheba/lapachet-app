@@ -2,6 +2,7 @@ package emag.lapachet.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.UUID;
 
 @Entity
 @Table
@@ -9,7 +10,7 @@ public class DailySaleItem
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private UUID id;
     private Float price;
     private Integer productId;
     private Integer dailySaleId;
@@ -20,9 +21,8 @@ public class DailySaleItem
         super();
     }
 
-    public DailySaleItem(Integer id, Float price, Integer productId, Integer dailySaleId, Date date, Integer quantity) {
+    public DailySaleItem(Float price, Integer productId, Integer dailySaleId, Date date, Integer quantity) {
         super();
-        this.id = id;
         this.price = price;
         this.productId = productId;
         this.dailySaleId = dailySaleId;
@@ -30,11 +30,11 @@ public class DailySaleItem
         this.quantity = quantity;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

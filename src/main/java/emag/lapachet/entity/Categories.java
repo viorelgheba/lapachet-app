@@ -1,6 +1,7 @@
 package emag.lapachet.entity;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table
@@ -8,7 +9,7 @@ public class Categories
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private UUID id;
     private Integer parent;
     private String name;
 
@@ -17,19 +18,17 @@ public class Categories
         super();
     }
 
-
-    public Categories(Integer id, Integer parent, String name) {
+    public Categories(Integer parent, String name) {
         super();
-        this.id = id;
         this.parent = parent;
         this.name = name;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -1,6 +1,7 @@
 package emag.lapachet.entity;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Table
@@ -8,7 +9,7 @@ public class SaleInterval
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private UUID id;
     private Integer intervalId;
     private Integer dailySaleId;
     private Integer clients;
@@ -17,19 +18,18 @@ public class SaleInterval
         super();
     }
 
-    public SaleInterval(Integer id, Integer intervalId, Integer dailySaleId, Integer clients) {
+    public SaleInterval(Integer intervalId, Integer dailySaleId, Integer clients) {
         super();
-        this.id = id;
         this.intervalId = intervalId;
         this.dailySaleId = dailySaleId;
         this.clients = clients;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
