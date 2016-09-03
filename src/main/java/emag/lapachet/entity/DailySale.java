@@ -41,7 +41,7 @@ public class DailySale
 
     @Override
     public String toString() {
-        return "DailySale{" +
+        return "DailySaleInterface{" +
                 "id=" + id +
                 ", date=" + date +
                 '}';

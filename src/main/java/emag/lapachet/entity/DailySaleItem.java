@@ -80,7 +80,7 @@ public class DailySaleItem
 
     @Override
     public String toString() {
-        return "DailySaleItem{" +
+        return "DailySaleItemInterface{" +
                 "id=" + id +
                 ", price=" + price +
                 ", productId=" + productId +

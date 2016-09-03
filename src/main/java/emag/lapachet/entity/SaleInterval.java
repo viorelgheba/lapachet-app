@@ -59,7 +59,7 @@ public class SaleInterval
 
     @Override
     public String toString() {
-        return "SaleInterval{" +
+        return "SaleIntervalInterface{" +
                 "id=" + id +
                 ", intervalId=" + intervalId +
                 ", dailySaleId=" + dailySaleId +

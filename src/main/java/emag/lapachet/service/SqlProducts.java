@@ -27,6 +27,11 @@ public class SqlProducts implements ProductsInterface
     }
 
     @Override
+    public Products getProduct(String product) {
+        return new Products();
+    }
+
+    @Override
     public GenericList getAllProducts() {
         /* TODO: get element form db */
         GenericList<Products> listProducts = new GenericList<Products>();
