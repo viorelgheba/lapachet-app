@@ -5,7 +5,7 @@
   </div>
   <div class="form-group">
         <label for="productName">Categorie</label>
-        <select class="form-control">
+        <select class="form-control" id="category" name="categoryId">
             <#list categories as category>
                 <option value="${category.id}">${category.name}</option>
             </#list>
