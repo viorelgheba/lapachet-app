@@ -20,7 +20,7 @@ public class IndexController {
         Map<String, Object> attributes = new HashMap<>();
 
         SqlCategory sqlCategories = new SqlCategory();
-        List<Category> categories = sqlCategories.getAllCategories();
+        List categories = sqlCategories.getAllCategories();
         attributes.put("categories", categories);
 
         return attributes;

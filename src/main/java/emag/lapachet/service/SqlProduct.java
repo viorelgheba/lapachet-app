@@ -2,6 +2,7 @@ package emag.lapachet.service;
 
 import emag.lapachet.entity.Product;
 import emag.lapachet.modelInterface.ProductInterface;
+import emag.lapachet.repository.ProductRepository;
 import emag.lapachet.util.GenericList;
 
 import java.util.List;
@@ -9,7 +10,9 @@ import java.util.UUID;
 
 public class SqlProduct implements ProductInterface
 {
+    private ProductRepository productRepository;
     public SqlProduct() {
+        this.productRepository = new ProductRepository();
     }
 
     @Override

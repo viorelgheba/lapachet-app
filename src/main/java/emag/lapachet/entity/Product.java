@@ -9,7 +9,7 @@ public class Product
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Integer id;
     private Integer categoryId;
     private String name;
     private String description;
@@ -17,8 +17,8 @@ public class Product
     private Integer grammage;
     private String unit;
 
-    public Product(Integer categoryId, String name, String description, Double basePrice, Integer grammage, String unit) {
-        super();
+    public Product(Integer id, Integer categoryId, String name, String description, Double basePrice, Integer grammage, String unit) {
+        this.id = id;
         this.categoryId = categoryId;
         this.name = name;
         this.description = description;
@@ -37,11 +37,11 @@ public class Product
         this.unit = "";
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
