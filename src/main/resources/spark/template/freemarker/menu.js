@@ -40,6 +40,27 @@ $(document).ready(function (){
         });
     });
 
+    $('#notify_users').click(function (){
+            $('#loadingmessage').show();
+            $.ajax({
+                'url': '/api/notify_users',
+                'type': 'GET',
+                success: function (data)
+                {
+                    if (data.error) {
+                        alert(data.message);
+                    }
+
+                    $('#loadingmessage').hide();
+                },
+                error : function (data)
+                {
+                    $('#loadingmessage').hide();
+                    alert(data.message);
+                }
+            });
+        });
+
     function addModal(data, callback) {
         var modal = $('<div style="display: none; height:570px; width: 600px !important"></div>');
         modal.html(data).dialog({

@@ -25,8 +25,18 @@ public class UserApiEndpoint implements EndpointInterface {
     @Override
     public void configure(Service spark) {
         spark.post("/api/users", (req, res) -> {
+            String token = System.getenv("BOT_API_TOKEN");
+            if (!token.equals(req.queryMap("access_token").value())) {
+                return "Invalid validation token";
+            }
+
             SaveUser saveUser = GSON.fromJson(req.body(), SaveUser.class);
             return sqlUser.addUser(saveUser);
+        });
+
+        spark.get("/api/notify_users", (req, res) -> {
+            sqlUser.notifyAllUsers();
+            return "OK";
         });
     }
 }

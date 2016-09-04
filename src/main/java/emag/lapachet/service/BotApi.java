@@ -11,7 +11,8 @@ import java.util.List;
  */
 public class BotApi {
 
-    private static String BASE_API_URL;
+    private static String BOT_API_URL;
+    private static String BOT_API_TOKEN;
     private static final String NOTIFY_API = "/notify";
 
     public static final MediaType JSON;
@@ -20,7 +21,8 @@ public class BotApi {
     private transient final OkHttpClient HTTP_CLIENT;
 
     static {
-        BASE_API_URL = System.getenv("BOT_API_URL");
+        BOT_API_URL = System.getenv("BOT_API_URL");
+        BOT_API_TOKEN = System.getenv("BOT_API_TOKEN");
         JSON = MediaType.parse("application/json; charset=utf-8");
     }
 
@@ -32,7 +34,7 @@ public class BotApi {
     public Response notifyUsers(List<String> userIds) throws IOException {
         RequestBody body = RequestBody.create(JSON, GSON.toJson(userIds));
         Request request = new Request.Builder()
-                .url(BASE_API_URL + NOTIFY_API)
+                .url(BOT_API_URL + NOTIFY_API + "?access_token=" + BOT_API_TOKEN)
                 .header("Content-Type", "application/json; charset=UTF-8")
                 .post(body)
                 .build();
