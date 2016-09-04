@@ -16,7 +16,7 @@ public class IndexController {
         return attributes;
     }
 
-    public static Map<String, Object> getAddProductsAttributes() throws ClassNotFoundException {
+    public static Map<String, Object> getAddProductsAttributes() {
         Map<String, Object> attributes = new HashMap<>();
 
         SqlCategory sqlCategories = new SqlCategory();
