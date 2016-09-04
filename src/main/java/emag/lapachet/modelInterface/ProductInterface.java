@@ -11,5 +11,5 @@ public interface ProductInterface
     UUID editProduct(UUID product, Integer categoryId, String name, String description, Double basePrice, Integer grammage, String unit);
     UUID deleteProduct(UUID product);
     Product getProduct(Integer product);
-    List<Product> getAllProducts();
+    List getAllProducts();
 }

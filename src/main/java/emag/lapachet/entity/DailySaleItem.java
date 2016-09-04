@@ -1,8 +1,7 @@
 package emag.lapachet.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.UUID;
+import java.util.Date;
 
 @Entity
 @Table
@@ -10,10 +9,11 @@ public class DailySaleItem
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    private Float price;
+    private Integer id;
+    private Double price;
     private Integer productId;
     private Integer dailySaleId;
+    private Integer categoryId;
     private Date date;
     private Integer quantity;
 
@@ -21,28 +21,29 @@ public class DailySaleItem
         super();
     }
 
-    public DailySaleItem(Float price, Integer productId, Integer dailySaleId, Date date, Integer quantity) {
-        super();
+    public DailySaleItem(Integer id, Double price, Integer productId, Integer dailySaleId, Integer categoryId, Date date, Integer quantity) {
+        this.id = id;
         this.price = price;
         this.productId = productId;
         this.dailySaleId = dailySaleId;
+        this.categoryId = categoryId;
         this.date = date;
         this.quantity = quantity;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -60,6 +61,14 @@ public class DailySaleItem
 
     public void setDailySaleId(Integer dailySaleId) {
         this.dailySaleId = dailySaleId;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
     }
 
     public Date getDate() {

@@ -2,7 +2,6 @@ package emag.lapachet.entity;
 
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.UUID;
 
 @Entity
 @Table
@@ -10,7 +9,7 @@ public class Interval
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Integer id;
     private Time timeStart;
     private Time timeEnd;
     private Integer maxSales;
@@ -19,18 +18,18 @@ public class Interval
         super();
     }
 
-    public Interval(Time timeStart, Time timeEnd, Integer maxSales) {
-        super();
+    public Interval(Integer id, Time timeStart, Time timeEnd, Integer maxSales) {
+        this.id = id;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
         this.maxSales = maxSales;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
