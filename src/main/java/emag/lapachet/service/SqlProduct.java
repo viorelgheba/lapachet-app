@@ -11,6 +11,7 @@ import java.util.UUID;
 public class SqlProduct implements ProductInterface
 {
     private ProductRepository productRepository;
+
     public SqlProduct() {
         this.productRepository = new ProductRepository();
     }
@@ -36,14 +37,7 @@ public class SqlProduct implements ProductInterface
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        /* TODO: get element form db */
-        GenericList<Product> listProducts = new GenericList<>();
-        Product product = new Product();
-        Product product2 = new Product();
-        listProducts.addElement(product);
-        listProducts.addElement(product2);
-
-        return listProducts.getList();
+    public List getAllProducts() {
+        return (List) this.productRepository.getAllProducts();
     }
 }

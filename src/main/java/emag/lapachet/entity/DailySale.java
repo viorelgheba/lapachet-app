@@ -1,8 +1,7 @@
 package emag.lapachet.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.UUID;
+import java.util.Date;
 
 @Entity
 @Table
@@ -10,24 +9,25 @@ public class DailySale
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-    private Date date;
+    private Integer id;
+    private java.util.Date date;
 
     public DailySale()
     {
         super();
     }
 
-    public DailySale(Date date) {
+    public DailySale(Integer id, Date date) {
         super();
+        this.id = id;
         this.date = date;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -31,4 +31,14 @@ public class SqlCategory implements CategoryInterface
     public List getAllCategories() {
         return (List) this.categoryRepository.getAllCategories();
     }
+
+    /**
+     * Returns daily categories
+     * @param date string yyyy-mm-dd
+     * @return
+     */
+    public List getDailyCategories(String date)
+    {
+        return (List) this.categoryRepository.getDailyCategories(date);
+    }
 }

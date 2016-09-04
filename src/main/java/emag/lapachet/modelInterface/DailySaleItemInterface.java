@@ -1,8 +1,7 @@
 package emag.lapachet.modelInterface;
 
-import emag.lapachet.util.GenericList;
-
 import java.sql.Date;
+import java.util.List;
 import java.util.UUID;
 
 public interface DailySaleItemInterface
@@ -10,5 +9,5 @@ public interface DailySaleItemInterface
     UUID addDailySaleItem(Float price, Integer productId, Integer dailySaleId, Date date, Integer quantity);
     UUID editDailySaleItem(UUID dailySaleItem, Float price, Integer productId, Integer dailySaleId, Date date, Integer quantity);
     UUID deleteDailySaleItem(UUID dailySaleItem);
-    GenericList getAllDailySaleItem();
+    List getAllDailySaleItems();
 }
