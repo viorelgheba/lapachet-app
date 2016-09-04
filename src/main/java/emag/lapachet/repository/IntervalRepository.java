@@ -54,7 +54,7 @@ public class IntervalRepository
             @Override
             public void apply(final Document saleInterval) {
                 Date now = new Date();
-                Document interval = Db.getMongoDatabase().getCollection("interval").find(eq("_id", saleInterval.get("daily_sale_id"))).first();
+                Document interval = Db.getMongoDatabase().getCollection("interval").find(eq("_id", saleInterval.get("interval_id"))).first();
 
                 if (interval != null) {
                     String[] parts = interval.getString("time_start").split(":");
