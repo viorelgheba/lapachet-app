@@ -47,6 +47,7 @@ $(document).ready(function (){
                 'type': 'GET',
                 success: function (data)
                 {
+                    console.log(data);
                     if (data.error) {
                         alert(data.message);
                     }
@@ -55,8 +56,9 @@ $(document).ready(function (){
                 },
                 error : function (data)
                 {
+                    console.log(data);
                     $('#loadingmessage').hide();
-                    alert(data.message);
+                    alert(data.statusText);
                 }
             });
         });

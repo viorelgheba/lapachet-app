@@ -37,7 +37,7 @@ public class SqlUser implements UserInterface {
         return user.get("_id");
     }
 
-    public void notifyAllUsers() {
+    public void notifyAllUsers() throws IOException {
         List<String> userIds = new ArrayList<>();
 
         FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("user").find();
@@ -48,10 +48,6 @@ public class SqlUser implements UserInterface {
             }
         });
 
-        try {
-            botApi.notifyUsers(userIds);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        botApi.notifyUsers(userIds);
     }
 }

@@ -36,7 +36,7 @@
             </div>
         </div>
         <div id='loadingmessage' style='display:none'>
-            <img src='loading.gif'/>
+            <!--<img src='/loading.gif'/>-->
         </div>
     </body>
 

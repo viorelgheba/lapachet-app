@@ -3,7 +3,11 @@ package emag.lapachet.route;
 import com.google.gson.Gson;
 import emag.lapachet.entity.SaveUser;
 import emag.lapachet.service.SqlUser;
+import org.bson.Document;
 import spark.Service;
+
+import java.io.IOException;
+import static emag.lapachet.util.JsonUtil.json;
 
 /**
  * Created by viorel.gheba on 9/4/16.
@@ -35,8 +39,13 @@ public class UserApiEndpoint implements EndpointInterface {
         });
 
         spark.get("/api/notify_users", (req, res) -> {
-            sqlUser.notifyAllUsers();
-            return "OK";
-        });
+            try {
+                sqlUser.notifyAllUsers();
+            } catch (IOException $e) {
+                return new Document().append("error", $e.getMessage());
+            }
+
+            return new Document().append("status", "ok");
+        }, json());
     }
 }

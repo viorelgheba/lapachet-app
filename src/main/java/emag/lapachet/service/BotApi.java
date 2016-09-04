@@ -1,6 +1,7 @@
 package emag.lapachet.service;
 
 import com.google.gson.Gson;
+import emag.lapachet.entity.NotifyWrapper;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -32,7 +33,7 @@ public class BotApi {
     }
 
     public Response notifyUsers(List<String> userIds) throws IOException {
-        RequestBody body = RequestBody.create(JSON, GSON.toJson(userIds));
+        RequestBody body = RequestBody.create(JSON, GSON.toJson(new NotifyWrapper(userIds)));
         Request request = new Request.Builder()
                 .url(BOT_API_URL + NOTIFY_API + "?access_token=" + BOT_API_TOKEN)
                 .header("Content-Type", "application/json; charset=UTF-8")
@@ -44,10 +45,11 @@ public class BotApi {
 
         Response returnValue = null;
         if (code == 200) {
-            System.out.println("WORK!");
+            System.out.println(response.body().string());
             returnValue = GSON.fromJson(response.body().string(), Response.class);
         } else {
             System.out.println("ERROR: " + response.body().string());
+            throw new IOException("ERROR: " + response.body().string());
         }
 
         response.body().close();
