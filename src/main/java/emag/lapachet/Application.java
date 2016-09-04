@@ -1,5 +1,6 @@
 package emag.lapachet;
 
+import emag.lapachet.route.CategoryApiEndpoint;
 import emag.lapachet.route.HomeEndpoint;
 import emag.lapachet.route.ProductApiEndpoint;
 import emag.lapachet.route.RouteContext;
@@ -15,6 +16,7 @@ public class Application {
 
         RouteContext routeContext = new RouteContext(http);
         routeContext.addEndpoint(new HomeEndpoint(""));
+        routeContext.addEndpoint(new CategoryApiEndpoint("/api/categories"));
         routeContext.addEndpoint(new ProductApiEndpoint("/api/products"));
     }
 }

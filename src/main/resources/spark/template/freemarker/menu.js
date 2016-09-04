@@ -8,7 +8,7 @@ $(document).ready(function (){
                 if (data.error) {
                     alert(data.message);
                 }
-                addModal(data);
+                addModal(data, saveProduct);
             },
             error : function (data)
             {
@@ -27,19 +27,39 @@ $(document).ready(function (){
         modal.html(data).dialog({
             title: '',
             modal: true,
-            height: 400,
-            width: 350,
+            height: '400px',
+            width: '600px',
+            minHeight: '400px',
+            minWidth: '600px',
             buttons:
             { "Save": function () {
                 if (typeof callback === 'function') {
                     callback();
+                    $(this).dialog('close');
                 }
-                $(this).dialog("close");
             }}
         });
     }
 
     function saveProduct(){
-        alert("saveProduct");
+        var data = $("form").serializeJSON();
+        $.ajax({
+            'url': '/add_products',
+            'type': 'POST',
+            data: JSON.stringify({data}),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data)
+            {
+                if (data.error) {
+                    alert(data.message);
+                }
+                alert("Produsul a fost adaugat cu succes!");
+            },
+            error : function (data)
+            {
+                alert(data.message);
+            }
+        });
     }
 });
