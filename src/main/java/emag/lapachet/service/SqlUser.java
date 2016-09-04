@@ -44,9 +44,15 @@ public class SqlUser implements UserInterface {
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document doc) {
-                userIds.add(doc.getString("userId"));
+                if (doc.getString("userId") != null) {
+                    userIds.add(doc.getString("userId"));
+                }
             }
         });
+
+        if (userIds.isEmpty()) {
+            throw new IOException("No users found");
+        }
 
         botApi.notifyUsers(userIds);
     }

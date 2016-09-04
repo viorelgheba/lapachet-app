@@ -32,7 +32,7 @@ public class BotApi {
         GSON = new Gson();
     }
 
-    public Response notifyUsers(List<String> userIds) throws IOException {
+    public void notifyUsers(List<String> userIds) throws IOException {
         RequestBody body = RequestBody.create(JSON, GSON.toJson(new NotifyWrapper(userIds)));
         Request request = new Request.Builder()
                 .url(BOT_API_URL + NOTIFY_API + "?access_token=" + BOT_API_TOKEN)
@@ -43,17 +43,13 @@ public class BotApi {
         okhttp3.Response response = HTTP_CLIENT.newCall(request).execute();
         final int code = response.code();
 
-        Response returnValue = null;
         if (code == 200) {
             System.out.println(response.body().string());
-            returnValue = GSON.fromJson(response.body().string(), Response.class);
         } else {
             System.out.println("ERROR: " + response.body().string());
             throw new IOException("ERROR: " + response.body().string());
         }
 
         response.body().close();
-
-        return returnValue;
     }
 }

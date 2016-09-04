@@ -41,11 +41,10 @@ public class UserApiEndpoint implements EndpointInterface {
         spark.get("/api/notify_users", (req, res) -> {
             try {
                 sqlUser.notifyAllUsers();
+                return new Document().append("status", "ok");
             } catch (IOException $e) {
                 return new Document().append("error", $e.getMessage());
             }
-
-            return new Document().append("status", "ok");
         }, json());
     }
 }
