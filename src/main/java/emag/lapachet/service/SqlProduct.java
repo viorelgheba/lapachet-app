@@ -19,6 +19,7 @@ import static com.mongodb.client.model.Filters.in;
 
 public class SqlProduct implements ProductInterface
 {
+    private static Integer menuCategoryId = 14;
     private ProductRepository productRepository;
 
     public SqlProduct() {
@@ -50,14 +51,19 @@ public class SqlProduct implements ProductInterface
         return (List) this.productRepository.getAllProducts();
     }
 
-    public List<Document> getDailyMenus(String date)
+    public List<Document> getCategoryProducts(String date)
+    {
+        return this.getCategoryProducts(date, menuCategoryId);
+    }
+
+    public List<Document> getCategoryProducts(String date, Integer categoryId)
     {
         List<Document> menus = new ArrayList<>();
 
         Document dailySale = Db.getMongoDatabase().getCollection("daily_sale").find(eq("date", date)).first();
         Integer dailySaleId = dailySale.getInteger("_id");
 
-        FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("sale_item").find(and(eq("daily_sale_id", dailySaleId), eq("category_id", 14)));
+        FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("sale_item").find(and(eq("daily_sale_id", dailySaleId), eq("category_id", categoryId)));
 
         List<Object> productIds = new ArrayList<>();
 

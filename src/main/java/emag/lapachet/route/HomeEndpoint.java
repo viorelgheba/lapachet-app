@@ -10,14 +10,10 @@ import spark.ModelAndView;
 import spark.Service;
 import spark.template.freemarker.FreeMarkerEngine;
 
-public class HomeEndpoint extends AbstractEndpoint {
-    public HomeEndpoint(String basePath) {
-        super(basePath);
-    }
-
+public class HomeEndpoint implements EndpointInterface {
     @Override
     public void configure(Service spark) {
-        spark.get(basePath + "/", (req, res) -> {
+        spark.get("/", (req, res) -> {
             Object attributes = IndexController.serveIndexPage();
             return new ModelAndView(attributes, "index.ftl");
         }, new FreeMarkerEngine());

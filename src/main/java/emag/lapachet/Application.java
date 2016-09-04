@@ -1,9 +1,6 @@
 package emag.lapachet;
 
-import emag.lapachet.route.CategoryApiEndpoint;
-import emag.lapachet.route.HomeEndpoint;
-import emag.lapachet.route.ProductApiEndpoint;
-import emag.lapachet.route.RouteContext;
+import emag.lapachet.route.*;
 import spark.Service;
 
 import static spark.Spark.*;
@@ -15,8 +12,9 @@ public class Application {
         Service http = Service.ignite().port(Integer.valueOf(System.getenv("PORT")));
 
         RouteContext routeContext = new RouteContext(http);
-        routeContext.addEndpoint(new HomeEndpoint(""));
-        routeContext.addEndpoint(new CategoryApiEndpoint("/api/categories"));
-        routeContext.addEndpoint(new ProductApiEndpoint("/api/products"));
+        routeContext.addEndpoint(new HomeEndpoint());
+        routeContext.addEndpoint(new CategoryApiEndpoint());
+        routeContext.addEndpoint(new ProductApiEndpoint());
+        routeContext.addEndpoint(new IntervalApiEndpoint());
     }
 }

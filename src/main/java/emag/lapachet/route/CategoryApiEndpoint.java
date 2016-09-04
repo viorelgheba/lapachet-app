@@ -7,17 +7,16 @@ import java.text.SimpleDateFormat;
 
 import static emag.lapachet.util.JsonUtil.json;
 
-public class CategoryApiEndpoint extends AbstractEndpoint {
+public class CategoryApiEndpoint implements EndpointInterface {
     private SqlCategory sqlCategory;
 
-    public CategoryApiEndpoint(String basePath) {
-        super(basePath);
+    public CategoryApiEndpoint() {
         this.sqlCategory = new SqlCategory();
     }
 
     @Override
     public void configure(Service spark) {
-        spark.get(basePath + "/daily", (req, res) -> {
+        spark.get("/api/categories/daily", (req, res) -> {
             res.type("application/json");
             return sqlCategory.getDailyCategories(req.queryMap("date").value());
         }, json());

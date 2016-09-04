@@ -11,6 +11,9 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.in;
+
 public class IntervalRepository
 {
     public List<Interval> getAllIntervals() {
@@ -28,6 +31,28 @@ public class IntervalRepository
                         document.getInteger("max_sales")
                 );
                 intervals.add(interval);
+            }
+        });
+
+        return intervals;
+    }
+
+    public List<Document> getAvailableIntervals(String date)
+    {
+        List<Document> intervals = new ArrayList<>();
+
+        Document dailySale = Db.getMongoDatabase().getCollection("daily_sale").find(eq("date", date)).first();
+        Integer dailySaleId = dailySale.getInteger("_id");
+
+        FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("sale_interval").find(eq("daily_sale_id", dailySaleId));
+
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document saleInterval) {
+                Document interval = Db.getMongoDatabase().getCollection("interval").find(eq("_id", saleInterval.get("daily_sale_id"))).first();
+                if (saleInterval.getInteger("clients") < interval.getInteger("max_sales")) {
+                    intervals.add(interval);
+                }
             }
         });
 
