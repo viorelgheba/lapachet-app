@@ -24,5 +24,10 @@ public class ProductApiEndpoint extends AbstractEndpoint {
             res.type("application/json");
             return sqlProducts.getProduct(Integer.valueOf(req.params(":id")));
         }, json());
+
+        spark.get(basePath + "/menus", (req, res) -> {
+            res.type("application/json");
+            return sqlProducts.getDailyMenus(req.queryMap("date").value());
+        }, json());
     }
 }

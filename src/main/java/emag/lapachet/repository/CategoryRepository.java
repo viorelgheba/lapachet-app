@@ -39,19 +39,16 @@ public class CategoryRepository
     {
         List<Document> categories = new ArrayList<>();
 
-        Document dailySale = Db.getMongoDatabase()
-                .getCollection("daily_sale")
-                .find(eq("date", date))
-                .first();
-        Integer dailySaleId = Integer.parseInt(dailySale.get("_id").toString());
+        Document dailySale = Db.getMongoDatabase().getCollection("daily_sale").find(eq("date", date)).first();
+        Integer dailySaleId = dailySale.getInteger("_id");
 
         FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("sale_item").find(eq("daily_sale_id", dailySaleId));
 
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document saleItem) {
-                Document product = Db.getMongoDatabase().getCollection("product").find(eq("_id", saleItem.getInteger("product_id"))).first();
-                Document category = Db.getMongoDatabase().getCollection("category").find(eq("_id", product.getInteger("category_id"))).first();
+                Document product = Db.getMongoDatabase().getCollection("product").find(eq("_id", saleItem.get("product_id"))).first();
+                Document category = Db.getMongoDatabase().getCollection("category").find(eq("_id", product.get("category_id"))).first();
                 if (!categories.contains(category)) {
                     categories.add(category);
                 }

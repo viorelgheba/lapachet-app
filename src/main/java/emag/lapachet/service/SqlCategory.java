@@ -37,8 +37,7 @@ public class SqlCategory implements CategoryInterface
      * @param date string yyyy-mm-dd
      * @return
      */
-    public List getDailyCategories(String date)
-    {
+    public List getDailyCategories(String date) {
         return (List) this.categoryRepository.getDailyCategories(date);
     }
 }
