@@ -49,7 +49,7 @@ $(document).ready(function (){
                 {
                     console.log(data);
                     if (data.error) {
-                        alert(data.message);
+                        alert(data.error);
                     }
 
                     $('#loadingmessage').hide();
