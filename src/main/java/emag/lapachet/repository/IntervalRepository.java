@@ -1,6 +1,8 @@
 package emag.lapachet.repository;
 
 import com.mongodb.Block;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import emag.lapachet.entity.Interval;
@@ -20,7 +22,7 @@ public class IntervalRepository
         List<Interval> intervals = new ArrayList<>();
 
         MongoDatabase db = Db.getMongoDatabase();
-        FindIterable<Document> iterable = db.getCollection("category").find();
+        FindIterable<Document> iterable = db.getCollection("interval").find();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {

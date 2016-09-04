@@ -10,6 +10,8 @@ import spark.ModelAndView;
 import spark.Service;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import java.util.Map;
+
 public class HomeEndpoint implements EndpointInterface {
     @Override
     public void configure(Service spark) {
@@ -28,7 +30,7 @@ public class HomeEndpoint implements EndpointInterface {
             JsonObject object = parser.parse(request.body()).getAsJsonObject();
 
             Product product = new Gson().fromJson(object.get("data"), Product.class);
-
+            /* TODO save product */
             return true;
         });
 
@@ -42,8 +44,17 @@ public class HomeEndpoint implements EndpointInterface {
             JsonObject object = parser.parse(request.body()).getAsJsonObject();
 
             Category category = new Gson().fromJson(object.get("data"), Category.class);
-
+            /* TODO save category */
             return true;
+        });
+
+        spark.get("/add_daily_menu", (request, response) -> {
+            return "Hello world";
+        });
+
+        spark.get("/intervals", (request, response) -> {
+            Map<String, Object> attributes = IndexController.getIntervalAttributes();
+            return "Hello world";
         });
     }
 }

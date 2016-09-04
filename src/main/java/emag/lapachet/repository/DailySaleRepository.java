@@ -8,7 +8,10 @@ import emag.lapachet.util.Db;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static com.mongodb.client.model.Filters.eq;
 
 public class DailySaleRepository
 {
@@ -16,7 +19,7 @@ public class DailySaleRepository
         List<DailySale> dailySales = new ArrayList<>();
 
         MongoDatabase db = Db.getMongoDatabase();
-        FindIterable<Document> iterable = db.getCollection("category").find();
+        FindIterable<Document> iterable = db.getCollection("daily_sale").find();
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document document) {
@@ -29,5 +32,22 @@ public class DailySaleRepository
         });
 
         return dailySales;
+    }
+
+    public DailySale getCurrentDailySale(String currentDate) {
+        DailySale dailySale = new DailySale();
+
+        FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("daily_sale").find(eq("date", currentDate));
+        iterable.forEach(new Block<Document>() {
+            @Override
+            public void apply(final Document document) {
+                DailySale dailySale = new DailySale(
+                        document.getInteger("_id"),
+                        document.getDate("date")
+                );
+            }
+        });
+
+        return dailySale;
     }
 }

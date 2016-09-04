@@ -13,8 +13,8 @@ public class SqlInterval implements IntervalInterface
 {
     private IntervalRepository intervalRepository;
 
-    public SqlInterval(IntervalRepository intervalRepository) {
-        this.intervalRepository = intervalRepository;
+    public SqlInterval() {
+        this.intervalRepository = new IntervalRepository();
     }
 
     @Override

@@ -1,6 +1,8 @@
 package emag.lapachet.repository;
 
 import com.mongodb.Block;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import emag.lapachet.entity.Category;
