@@ -55,25 +55,21 @@ public class SqlProduct implements ProductInterface
         List<Document> menus = new ArrayList<>();
 
         Document dailySale = Db.getMongoDatabase().getCollection("daily_sale").find(eq("date", date)).first();
-        FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("sale_item").find(and(eq("daily_sale_id", dailySale.get("_id")), eq("category_id", 14)));
+        Integer dailySaleId = dailySale.getInteger("_id");
+
+        FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("sale_item").find(and(eq("daily_sale_id", dailySaleId), eq("category_id", 14)));
 
         List<Object> productIds = new ArrayList<>();
 
         iterable.forEach(new Block<Document>() {
             @Override
-            public void apply(final Document document) {
-                System.out.println(document);
-                if (productIds.contains(document.get("product_id"))) {
-                    productIds.add(document.get("product_id"));
+            public void apply(final Document saleItem) {
+                Object productId = saleItem.get("product_id");
+                if (!productIds.contains(productId)) {
+                    Document product = Db.getMongoDatabase().getCollection("product").find(eq("_id", saleItem.get("product_id"))).first();
+                    menus.add(product);
+                    productIds.add(productId);
                 }
-            }
-        });
-
-        iterable = Db.getMongoDatabase().getCollection("products").find(in("_id", productIds));
-        iterable.forEach(new Block<Document>() {
-            @Override
-            public void apply(final Document document) {
-                menus.add(document);
             }
         });
 
