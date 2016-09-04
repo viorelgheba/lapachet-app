@@ -6,12 +6,21 @@ import com.mongodb.client.MongoDatabase;
 import emag.lapachet.entity.SaleInterval;
 import emag.lapachet.util.Db;
 import org.bson.Document;
-
 import java.util.ArrayList;
 import java.util.List;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
 
 public class SaleIntervalRepository
 {
+    public Document getSaleInterval(Integer id) {
+        return Db.getMongoDatabase().getCollection("sale_interval").find(eq("_id", id)).first();
+    }
+
+    public Document getSaleInterval(Integer intervalId, Object dailySaleId) {
+        return Db.getMongoDatabase().getCollection("sale_interval").find(and(eq("interval_id", intervalId), eq("daily_sale_id", dailySaleId))).first();
+    }
+
     public List<SaleInterval> getAllSaleIntervals() {
         List<SaleInterval> saleIntervals = new ArrayList<>();
 
