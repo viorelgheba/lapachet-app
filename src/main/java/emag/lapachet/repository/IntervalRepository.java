@@ -51,7 +51,11 @@ public class IntervalRepository
             public void apply(final Document saleInterval) {
                 Document interval = Db.getMongoDatabase().getCollection("interval").find(eq("_id", saleInterval.get("daily_sale_id"))).first();
                 if (saleInterval.getInteger("clients") < interval.getInteger("max_sales")) {
-                    intervals.add(interval);
+                    Document doc = new Document();
+                    doc.append("id", saleInterval.get("_id"))
+                            .append("time_start", interval.get("time_start"))
+                            .append("time_end", interval.get("time_end"));
+                    intervals.add(doc);
                 }
             }
         });
