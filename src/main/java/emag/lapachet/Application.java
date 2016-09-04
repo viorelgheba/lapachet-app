@@ -16,5 +16,7 @@ public class Application {
         routeContext.addEndpoint(new CategoryApiEndpoint());
         routeContext.addEndpoint(new ProductApiEndpoint());
         routeContext.addEndpoint(new IntervalApiEndpoint());
+        routeContext.addEndpoint(new SaleApiEndpoint());
+        routeContext.addEndpoint(new UserApiEndpoint());
     }
 }

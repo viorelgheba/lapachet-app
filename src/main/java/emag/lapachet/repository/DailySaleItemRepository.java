@@ -6,12 +6,18 @@ import com.mongodb.client.MongoDatabase;
 import emag.lapachet.entity.DailySaleItem;
 import emag.lapachet.util.Db;
 import org.bson.Document;
-
 import java.util.ArrayList;
 import java.util.List;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
 
 public class DailySaleItemRepository
 {
+    public Document getSaleItem(Integer productId, Object dailySaleId)
+    {
+        return Db.getMongoDatabase().getCollection("sale_item").find(and(eq("product_id", productId), eq("daily_sale_id", dailySaleId))).first();
+    }
+
     public List<DailySaleItem> getAllSaleDailyItems() {
         List<DailySaleItem> dailySales = new ArrayList<>();
 

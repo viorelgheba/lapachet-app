@@ -40,6 +40,29 @@ $(document).ready(function (){
         });
     });
 
+    $('#notify_users').click(function (){
+            $('#loadingmessage').show();
+            $.ajax({
+                'url': '/api/notify_users',
+                'type': 'GET',
+                success: function (data)
+                {
+                    console.log(data);
+                    if (data.error) {
+                        alert(data.error);
+                    }
+
+                    $('#loadingmessage').hide();
+                },
+                error : function (data)
+                {
+                    console.log(data);
+                    $('#loadingmessage').hide();
+                    alert(data.statusText);
+                }
+            });
+        });
+
     function addModal(data, callback) {
         var modal = $('<div style="display: none; height:570px; width: 600px !important"></div>');
         modal.html(data).dialog({
