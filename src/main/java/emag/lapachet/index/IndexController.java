@@ -160,6 +160,36 @@ public class IndexController {
                         .append("category_id", 13)
         );
 
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 16)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 4)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 17)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 4)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 18)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 4)
+        );
+
         // intervals
         for (Integer iId = 1; iId <= 14; iId++) {
             Db.getMongoDatabase().getCollection("interval").updateOne(
