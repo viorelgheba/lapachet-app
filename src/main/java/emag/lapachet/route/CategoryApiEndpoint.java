@@ -3,8 +3,6 @@ package emag.lapachet.route;
 import emag.lapachet.service.SqlCategory;
 import spark.Service;
 
-import java.text.SimpleDateFormat;
-
 import static emag.lapachet.util.JsonUtil.json;
 
 public class CategoryApiEndpoint implements EndpointInterface {

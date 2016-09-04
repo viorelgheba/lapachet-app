@@ -1,8 +1,6 @@
 package emag.lapachet.repository;
 
 import com.mongodb.Block;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import emag.lapachet.entity.Category;
@@ -13,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.ne;
+import static com.mongodb.client.model.Filters.and;
 
 public class CategoryRepository
 {
@@ -44,7 +44,12 @@ public class CategoryRepository
         Document dailySale = Db.getMongoDatabase().getCollection("daily_sale").find(eq("date", date)).first();
         Integer dailySaleId = dailySale.getInteger("_id");
 
-        FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("sale_item").find(eq("daily_sale_id", dailySaleId));
+        FindIterable<Document> iterable = Db.getMongoDatabase().getCollection("sale_item").find(
+                and(
+                        eq("daily_sale_id", dailySaleId),
+                        ne("category_id", ProductRepository.menuCategoryId)
+                )
+        );
 
         iterable.forEach(new Block<Document>() {
             @Override

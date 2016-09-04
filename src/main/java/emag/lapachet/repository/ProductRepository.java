@@ -15,7 +15,7 @@ import static com.mongodb.client.model.Filters.eq;
 
 public class ProductRepository
 {
-    private static Integer menuCategoryId = 14;
+    public static Integer menuCategoryId = 14;
 
     public Document getProduct(Integer productId)
     {
