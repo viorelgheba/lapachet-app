@@ -25,7 +25,7 @@ public class SaleApiEndpoint implements EndpointInterface {
     public void configure(Service spark) {
         spark.post("/api/sales", "application/json", (req, res) -> {
             SaveSale saveSale = GSON.fromJson(req.body(), SaveSale.class);
-            return new Document().append("orderId", sqlSale.addSale(saveSale));
+            return new Document().append("orderId", sqlSale.addSale(saveSale).toString());
         }, json());
     }
 }
