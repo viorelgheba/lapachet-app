@@ -10,11 +10,13 @@ import emag.lapachet.util.Db;
 import org.bson.Document;
 
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.in;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.lt;
 
 public class IntervalRepository
 {
@@ -51,13 +53,24 @@ public class IntervalRepository
         iterable.forEach(new Block<Document>() {
             @Override
             public void apply(final Document saleInterval) {
+                Date now = new Date();
                 Document interval = Db.getMongoDatabase().getCollection("interval").find(eq("_id", saleInterval.get("daily_sale_id"))).first();
-                if (saleInterval.getInteger("clients") < interval.getInteger("max_sales")) {
-                    Document doc = new Document();
-                    doc.append("id", saleInterval.get("_id"))
-                            .append("time_start", interval.get("time_start"))
-                            .append("time_end", interval.get("time_end"));
-                    intervals.add(doc);
+
+                if (interval != null) {
+                    String[] parts = interval.getString("time_start").split(":");
+                    Calendar cal = Calendar.getInstance();
+                    cal.set(Calendar.HOUR_OF_DAY, Integer.valueOf(parts[0]));
+                    cal.set(Calendar.MINUTE, Integer.valueOf(parts[1]));
+                    cal.set(Calendar.SECOND, Integer.valueOf(parts[2]));
+                    Date start = cal.getTime();
+
+                    if (saleInterval.getInteger("clients") < interval.getInteger("max_sales") && now.before(start)) {
+                        Document doc = new Document();
+                        doc.append("id", saleInterval.get("_id"))
+                                .append("time_start", interval.get("time_start"))
+                                .append("time_end", interval.get("time_end"));
+                        intervals.add(doc);
+                    }
                 }
             }
         });
