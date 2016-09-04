@@ -19,7 +19,7 @@ public class CategoryApiEndpoint extends AbstractEndpoint {
     public void configure(Service spark) {
         spark.get(basePath + "/daily", (req, res) -> {
             res.type("application/json");
-            return sqlCategory.getCategories(req.queryMap("date").value());
+            return sqlCategory.getDailyCategories(req.queryMap("date").value());
         }, json());
     }
 }
