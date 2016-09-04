@@ -40,6 +40,15 @@ $(document).ready(function (){
         });
     });
 
+    $('#db_restore').click(function (){
+            $.ajax({
+                'url': '/db_restore',
+                'type': 'GET',
+                success: function (data) {},
+                error : function (data) {}
+            });
+        });
+
     $('#notify_users').click(function (){
             $('#loadingmessage').show();
             $.ajax({

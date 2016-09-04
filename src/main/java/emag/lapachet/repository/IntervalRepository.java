@@ -75,6 +75,6 @@ public class IntervalRepository
             }
         });
 
-        return intervals;
+        return intervals.subList(0, 3);
     }
 }

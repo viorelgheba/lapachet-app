@@ -8,6 +8,8 @@ import emag.lapachet.repository.IntervalRepository;
 import emag.lapachet.repository.SaleIntervalRepository;
 import emag.lapachet.service.SqlCategory;
 import emag.lapachet.service.SqlInterval;
+import emag.lapachet.util.Db;
+import org.bson.Document;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -60,5 +62,121 @@ public class IndexController {
         attributes.put("intervals", intervals);
 
         return attributes;
+    }
+
+    public static void restoreDb() {
+        Integer id = 0;
+
+        // insert sale_items
+        Db.getMongoDatabase().getCollection("sale_item").deleteMany(new Document());
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                    .append("price", 8)
+                    .append("product_id", 56)
+                    .append("daily_sale_id", 1)
+                    .append("quantity", 5)
+                    .append("category_id", 14)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 57)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 14)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 58)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 14)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 41)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 11)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 42)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 11)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 43)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 11)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 50)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 13)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 51)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 13)
+        );
+
+        id++;
+        Db.getMongoDatabase().getCollection("sale_item").insertOne(
+                new Document().append("_id", id)
+                        .append("price", 8)
+                        .append("product_id", 52)
+                        .append("daily_sale_id", 1)
+                        .append("quantity", 5)
+                        .append("category_id", 13)
+        );
+
+        // intervals
+        for (Integer iId = 1; iId <= 14; iId++) {
+            Db.getMongoDatabase().getCollection("interval").updateOne(
+                    new Document("_id", iId),
+                    new Document("$set", new Document("max_sales", 1))
+            );
+        }
+
+        // sale_intervals
+        Db.getMongoDatabase().getCollection("sale_interval").deleteMany(new Document());
+        for (Integer siId = 1; siId <= 14; siId++) {
+            Db.getMongoDatabase().getCollection("sale_interval").insertOne(
+                    new Document().append("_id", siId)
+                            .append("interval_id", siId)
+                            .append("daily_sale_id", 1)
+                            .append("clients", 0)
+            );
+        }
     }
 }

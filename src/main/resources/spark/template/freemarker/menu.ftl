@@ -9,3 +9,6 @@
 <p>
     <button type="button" class="btn btn-primary btn-block" id="notify_users">Notifica utilizatori</button>
 </p>
+<p>
+    <button type="button" class="btn btn-primary btn-block" id="db_restore">DB restore</button>
+</p>

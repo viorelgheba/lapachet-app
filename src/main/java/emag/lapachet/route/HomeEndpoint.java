@@ -56,5 +56,10 @@ public class HomeEndpoint implements EndpointInterface {
             Map<String, Object> attributes = IndexController.getIntervalAttributes();
             return "Hello world";
         });
+
+        spark.get("/db_restore", (req, res) -> {
+            IndexController.restoreDb();
+            return "ok";
+        });
     }
 }
