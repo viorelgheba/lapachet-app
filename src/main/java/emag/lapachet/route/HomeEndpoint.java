@@ -3,6 +3,7 @@ package emag.lapachet.route;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import emag.lapachet.entity.Category;
 import emag.lapachet.entity.Product;
 import emag.lapachet.index.IndexController;
 import spark.ModelAndView;
@@ -31,6 +32,20 @@ public class HomeEndpoint extends AbstractEndpoint {
             JsonObject object = parser.parse(request.body()).getAsJsonObject();
 
             Product product = new Gson().fromJson(object.get("data"), Product.class);
+
+            return true;
+        });
+
+        spark.get("/add_category", (request, response) -> {
+            Object attributes = IndexController.getAddCategoriesAttributes();
+            return new ModelAndView(attributes, "addCategories/form.ftl");
+        }, new FreeMarkerEngine());
+
+        spark.post("/add_category", (request, response) -> {
+            JsonParser parser = new JsonParser();
+            JsonObject object = parser.parse(request.body()).getAsJsonObject();
+
+            Category category = new Gson().fromJson(object.get("data"), Category.class);
 
             return true;
         });

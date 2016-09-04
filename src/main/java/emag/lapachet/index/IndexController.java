@@ -25,4 +25,14 @@ public class IndexController {
 
         return attributes;
     }
+
+    public static Map<String, Object> getAddCategoriesAttributes() {
+        Map<String, Object> attributes = new HashMap<>();
+
+        SqlCategory sqlCategories = new SqlCategory();
+        List categories = sqlCategories.getAllCategories();
+        attributes.put("categories", categories);
+
+        return attributes;
+    }
 }
