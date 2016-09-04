@@ -1,10 +1,11 @@
 package emag.lapachet.route;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import emag.lapachet.entity.SaveSale;
 import emag.lapachet.service.SqlSale;
+import org.bson.Document;
 import spark.Service;
+import static emag.lapachet.util.JsonUtil.json;
 
 public class SaleApiEndpoint implements EndpointInterface {
 
@@ -24,7 +25,7 @@ public class SaleApiEndpoint implements EndpointInterface {
     public void configure(Service spark) {
         spark.post("/api/sales", "application/json", (req, res) -> {
             SaveSale saveSale = GSON.fromJson(req.body(), SaveSale.class);
-            return sqlSale.addSale(saveSale);
-        });
+            return new Document().append("orderId", sqlSale.addSale(saveSale));
+        }, json());
     }
 }
