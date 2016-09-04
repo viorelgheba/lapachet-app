@@ -1,6 +1,5 @@
 package emag.lapachet.route;
 
-import emag.lapachet.repository.IntervalRepository;
 import emag.lapachet.service.SqlInterval;
 import spark.Service;
 import static emag.lapachet.util.JsonUtil.json;
@@ -11,7 +10,7 @@ public class IntervalApiEndpoint implements EndpointInterface {
 
     public IntervalApiEndpoint()
     {
-        this.sqlInterval = new SqlInterval(new IntervalRepository());
+        this.sqlInterval = new SqlInterval();
     }
 
     @Override
